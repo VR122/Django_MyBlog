@@ -18,5 +18,6 @@ def all_posts(request):
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)  # Retrieve the post or return 404 if not found
     return render(request, "my_blog/post_detail.html", {
-        "post": post
+        "post": post,
+        "tags": post.tags.all()
     })
