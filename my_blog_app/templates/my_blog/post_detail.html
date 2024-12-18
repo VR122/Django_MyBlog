@@ -3,7 +3,7 @@
 {% block title %}{{ post.title }} - My Blog{% endblock %}
 {% block css_style %}
 {% load static%}
-<link rel="stylesheet" href="{% static '/posts.css' %}">
+<link rel="stylesheet" href="{% static '/post_detail.css' %}">
 {% endblock %}
 {% block content %}
     <div class="posts">
@@ -12,6 +12,9 @@
         <p><strong>Published on:</strong> {{ post.date|date:"F j, Y" }}</p>
         <div class="post-content">
             {{ post.content|safe }}  <!-- Use |safe if your content includes HTML -->
+        </div>
+        <div class="author">
+          <a href="mailto:{{ post.author.email }}"> {{ post.author }} </a>
         </div>
     </article>
 </div>
