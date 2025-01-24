@@ -40,6 +40,18 @@
     color: #a5a5a5;
   }
 
+  .posts article .tags {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 5px;
+    color: #fff;
+    background-color: #e74d4d;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
   .author{
     margin-top: 20px;
   }
@@ -55,3 +67,8 @@
     font-size: 16px;
     color: #e74d4d;
   }
+
+  .post-image img {
+    width: 300px;
+    height: auto;
+}
