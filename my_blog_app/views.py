@@ -15,6 +15,7 @@ class StartingPageView(ListView):
 class AllPostsView(ListView):
     template_name = "my_blog/all_posts.html"
     model = Post
+    ordering = ["-date"]
     context_object_name = "posts"
 
 
