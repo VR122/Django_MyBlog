@@ -22,7 +22,6 @@ class AllPostsView(ListView):
 class PostDetailView(DetailView):
     template_name = "my_blog/post_detail.html"
     model = Post
-    pk_url_kwarg = "id"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
