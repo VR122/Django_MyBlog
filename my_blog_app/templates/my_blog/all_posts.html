@@ -3,7 +3,7 @@
 {% block title %}Home - My Blog{% endblock %}
 {% block css_style %}
 {% load static%}
-<link rel="stylesheet" href="{% static  '/posts.css' %}">
+<link rel="stylesheet" href="{% static  '/all_posts.css' %}">
 {% endblock %}
 {% block content %}
     <h2>All Posts</h2>
@@ -13,7 +13,7 @@
                 <h3><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h3>
                 <p>{{ post.date|date:"F j, Y" }}</p>
                 <p>{{ post.excerpt }}</p>
-                <a href="{% url 'post_detail' slug=post.slug %}">Read more</a>
+                <a class="read-more" href="{% url 'post_detail' slug=post.slug %}">Read more</a>
             </article>
         {% empty %}
             <p>No posts available.</p>

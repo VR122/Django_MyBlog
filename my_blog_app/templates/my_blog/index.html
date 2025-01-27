@@ -10,11 +10,14 @@
     <h2>Latest Posts</h2>
     <div class="posts">
         {% for post in posts %}
-            <article>
-                <h3><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h3>
-                <p>{{ post.date|date:"F j, Y" }}</p>
-                <p>{{ post.excerpt }}</p>
-                <a href="{% url 'post_detail' slug=post.slug %}">Read more</a>
+            <article class="post-item">
+                <a href="{% url 'post_detail' slug=post.slug %}">
+                    <h3>{{ post.title }}</h3>
+                    <img src="{{ post.image.url }}">
+                    <p>{{ post.date|date:"F j, Y" }}</p>
+                    <p>{{ post.excerpt }}</p>
+                    <a class="read-more" href="{% url 'post_detail' slug=post.slug %}">Read more</a>
+                </a>
             </article>
         {% empty %}
             <p>No posts available.</p>
