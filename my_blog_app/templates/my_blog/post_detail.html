@@ -24,6 +24,27 @@
         <div class="author">
           <a href="mailto:{{ post.author.email }}"> {{ post.author }} </a>
         </div>
+
+        <section id="comment-form">
+            <h2>Your comment</h2>
+        <form action="{% url 'post_detail' post.slug %}" method="post">
+            {% csrf_token %}
+            {% for form_field in comment_form %}
+            <div class="form-group">
+                {{ form_field.label_tag }}
+                {{ form_field }}
+                {% if form_field.errors %}
+                    <ul>
+                        {% for error in form_field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>    
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+        </section>
     </article>
 </div>
     <nav>
