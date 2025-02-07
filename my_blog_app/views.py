@@ -26,7 +26,13 @@ class PostDetailView(View):
 
     def get(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
-        return render(request, "my_blog/post_detail.html", {"post": post, "tags":post.tags.all(), "comment_form": CommentForm()})
+        context = {
+                   "post": post, 
+                   "tags":post.tags.all(), 
+                   "comment_form": CommentForm(), 
+                   "comments": post.comments.all()
+                   }
+        return render(request, "my_blog/post_detail.html", context)
     
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
@@ -36,4 +42,9 @@ class PostDetailView(View):
             new_comment.post = post
             new_comment.save()
             return HttpResponseRedirect(reverse("post_detail", args=[slug]))
-        return render(request, "my_blog/post_detail.html", {"post": post, "comment_form": comment_form})
+        context = {
+            "post": post, 
+            "comment_form": comment_form, 
+            "comments": post.comments.all()
+            }
+        return render(request, "my_blog/post_detail.html", context)

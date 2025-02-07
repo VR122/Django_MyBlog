@@ -5,7 +5,17 @@
 {% load static%}
 <link rel="stylesheet" href="{% static '/post_detail.css' %}">
 {% endblock %}
+
+
 {% block content %}
+
+{% if comment_form.errors %}
+    <div id="alert">
+        <h2><strong>Oops! There was an error while saving the comment</strong></h2>
+        <p>Please correct the errors in the comment form</p>
+        <a href="#comment-form">Go to comment form</a>
+    </div>
+{% endif %}
     <div class="posts">
     <article>
         <h2>{{ post.title }}</h2>
@@ -30,20 +40,24 @@
         <form action="{% url 'post_detail' post.slug %}" method="post">
             {% csrf_token %}
             {% for form_field in comment_form %}
-            <div class="form-group">
+            <div class="form-group {% if form_field.errors %} invalid {% endif %}" >
                 {{ form_field.label_tag }}
                 {{ form_field }}
-                {% if form_field.errors %}
-                    <ul>
-                        {% for error in form_field.errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                {{ form_field.errors }}
             </div>    
             {% endfor %}
             <button type="submit">Submit</button>
         </form>
+        </section>
+
+        <section id="comments">
+            <h2>Comments</h2>
+            {% for comment in comments %}
+            <div class="comment">
+                <p><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}</p>
+                <p>{{ comment.text }}</p>
+            </div>
+            {% endfor %}
         </section>
     </article>
 </div>
