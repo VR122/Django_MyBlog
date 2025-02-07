@@ -54,8 +54,10 @@
             <h2>Comments</h2>
             {% for comment in comments %}
             <div class="comment">
-                <p><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}</p>
-                <p>{{ comment.text }}</p>
+                <p><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}: 
+                    {{ comment.text }}
+                </p>
+                
             </div>
             {% endfor %}
         </section>
