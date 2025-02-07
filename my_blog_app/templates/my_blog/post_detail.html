@@ -52,14 +52,17 @@
 
         <section id="comments">
             <h2>Comments</h2>
+            <ul>
+                {% if not comments%}
+                <li>No comments yet, be the first to comment.</li>
+                {% endif %}
             {% for comment in comments %}
-            <div class="comment">
-                <p><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}: 
-                    {{ comment.text }}
-                </p>
-                
-            </div>
+            <li>
+                <h3><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}: </h3>
+                <p>{{ comment.text }}</p>
+            </li>
             {% endfor %}
+        </ul>
         </section>
     </article>
 </div>
