@@ -23,13 +23,18 @@ class AllPostsView(ListView):
 
 
 class PostDetailView(View):
+    def is_saved_for_later(self, request, slug):
+        stored_posts = request.session.get("stored_posts")
+        return slug in stored_posts
+
     def get(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
         context = {
                    "post": post, 
                    "tags":post.tags.all(), 
                    "comment_form": CommentForm(), 
-                   "comments": post.comments.all().order_by("-date")
+                   "comments": post.comments.all().order_by("-date"),
+                   "is_saved_for_later": self.is_saved_for_later(request, slug)
                    }
         return render(request, "my_blog/post_detail.html", context)
     
@@ -44,7 +49,8 @@ class PostDetailView(View):
         context = {
             "post": post, 
             "comment_form": comment_form, 
-            "comments": post.comments.all().order_by("-date")
+            "comments": post.comments.all().order_by("-date"),
+            "is_saved_for_later": self.is_saved_for_later(request, slug)
             }
         return render(request, "my_blog/post_detail.html", context)
     
@@ -63,5 +69,7 @@ class ReadLaterView(View):
         post_slug = request.POST["post_slug"]
         if post_slug not in stored_posts:
             stored_posts.append(post_slug)
+        else:
+            stored_posts.remove(post_slug)
         request.session["stored_posts"] = stored_posts
         return HttpResponseRedirect("/")
