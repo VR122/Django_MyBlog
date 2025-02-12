@@ -186,3 +186,19 @@
 #comments h3 {
   color: #5b5b5b;
 }
+
+.read-later button{
+  margin-top: 20px;
+  font-size: 14px;
+  color: #000000;
+  background-color: rgb(151, 152, 152);
+  font: inherit;
+  cursor: pointer;
+}
+.read-later button:hover{
+  margin-top: 20px;
+  font-size: 14px;
+  color: #000000;
+  background-color: rgb(73, 73, 73);
+  font: inherit;
+}

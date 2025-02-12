@@ -24,6 +24,15 @@
             {{ tag }}
         </div>
         {% endfor %}
+
+        <form action="{% url 'read-later' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="post_slug" value="{{ post.slug }}">
+        <div class="read-later">
+            <button type="submit">Read Later</button>
+        </div>
+        </form>
+
         <p><strong>Published on:</strong> {{ post.date|date:"F j, Y" }}</p>
         <div class="post-image">
             <img src="{{ post.image.url }}">
@@ -56,13 +65,13 @@
                 {% if not comments%}
                 <li>No comments yet, be the first to comment.</li>
                 {% endif %}
-            {% for comment in comments %}
-            <li>
-                <h3><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}: </h3>
-                <p>{{ comment.text }}</p>
-            </li>
-            {% endfor %}
-        </ul>
+                {% for comment in comments %}
+                <li>
+                    <h3><strong>{{ comment.user_name }}</strong> said on {{ comment.date|date:"F j, Y" }}: </h3>
+                    <p>{{ comment.text }}</p>
+                </li>
+                {% endfor %}
+            </ul>
         </section>
     </article>
 </div>
