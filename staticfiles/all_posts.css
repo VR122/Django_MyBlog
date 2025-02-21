@@ -1,0 +1,46 @@
+h1 {
+  text-align: center;
+}
+
+
+.posts {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #bfbfbf;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .posts article {
+    margin-bottom: 20px;
+  }
+  
+  .posts article h3 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  .posts article h3 a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .posts article h3 a:hover {
+    color: #23527c;
+  }
+  
+  .posts article p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .posts article .read-more {
+    font-size: 16px;
+    color: #337ab7;
+    text-decoration: none;
+  }
+  
+  .posts article .read-more:hover {
+    color: #a5a5a5;
+  }
